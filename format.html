@@ -8,15 +8,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>String Formatting &mdash; format 0.2 documentation</title>
+    <title>String Formatting &mdash; format 0.3 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/breathe.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.2',
+        VERSION:     '0.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +26,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="format 0.2 documentation" href="index.html" />
+    <link rel="top" title="format 0.3 documentation" href="index.html" />
     <link rel="prev" title="Welcome to format’s documentation!" href="index.html" /> 
   </head>
   <body>
@@ -38,14 +39,15 @@
         <li class="right" >
           <a href="index.html" title="Welcome to format’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">format 0.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">format 0.3 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Format String Syntax</a><ul>
+<li><a class="reference internal" href="#">String Formatting</a></li>
+<li><a class="reference internal" href="#format-string-syntax">Format String Syntax</a><ul>
 <li><a class="reference internal" href="#format-specification-mini-language">Format Specification Mini-Language</a></li>
 <li><a class="reference internal" href="#format-examples">Format examples</a></li>
 </ul>
@@ -81,10 +83,106 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="format-string-syntax">
+  <div class="section" id="string-formatting">
+<span id="id1"></span><h1>String Formatting<a class="headerlink" href="#string-formatting" title="Permalink to this headline">¶</a></h1>
+<p id="format::Format__StringRef"><span id="project0namespaceformat_1aeabda57615c4fb07c7854be59d251765"></span><div class="line-block">
+<div class="line">TempFormatter <strong>Format</strong>(StringRef format)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Formats a string. Returns a temporary formatter object that accepts
+arguments via operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>. <em>format</em> is a format string that contains
+literal text and replacement fields surrounded by braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
+The formatter object replaces the fields with formatted arguments
+and stores the output in a memory buffer. The content of the buffer can
+be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with <tt class="xref py py-meth docutils literal"><span class="pre">str()</span></tt> or accessed as a C string
+with <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Elapsed time: {0:.2f} seconds&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mf">1.23</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>See also <a class="reference internal" href="#format-string-syntax">Format String Syntax</a>.</p>
+ </p>
+</div></blockquote>
+<div class="line-block">
+<div class="line" id="format::Formatter"><span id="project0classformat_1_1_formatter"></span><em>class</em> <strong>format::Formatter</strong></div>
+</div>
+<blockquote>
+<div><p></p>
+<p><p>The <a class="reference internal" href="#format::Formatter" title="format::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">format::Formatter</span></tt></a> class provides string formatting
+functionality similar to Python&#8217;s <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format">str.format</a>.
+The output is stored in a memory buffer that grows dynamically.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Formatter</span> <span class="n">out</span><span class="p">;</span>
+<span class="n">out</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="n">out</span><span class="p">(</span><span class="s">&quot;(-{:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This will populate the buffer of the <tt class="docutils literal"><span class="pre">out</span></tt> object with the following
+output:</p>
+<div class="highlight-none"><div class="highlight"><pre>Current point:
+(-3.140000, +3.140000)
+</pre></div>
+</div>
+<p>The buffer can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
+ </p>
+<em>Public Functions</em><blockquote>
+<div><p id="format::Formatter::Formatter"><span id="project0classformat_1_1_formatter_1a48105dec99b62d85404a5ebfc9260db2"></span><div class="line-block">
+<div class="line"> <strong>Formatter</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="format::Formatter::call-operator__StringRef"><span id="project0classformat_1_1_formatter_1a5e93d81bc232e21a1dc338dd15c3effe"></span><div class="line-block">
+<div class="line">internal::ArgInserter <strong>operator()</strong>(StringRef format)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Formats a string appending the output to the internal buffer. </p>
+<p>Arguments are accepted through the returned ArgInserter object using inserter operator&lt;&lt;. </p>
+</div></blockquote>
+<p id="format::Formatter::sizeC"><span id="project0classformat_1_1_formatter_1aee24e2f810dfbdeccc352953e4bbc602"></span><div class="line-block">
+<div class="line">std::size_t <strong>size</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="format::Formatter::dataC"><span id="project0classformat_1_1_formatter_1a1b4077a8a8a6823fb5d1ea9704670ff5"></span><div class="line-block">
+<div class="line">const char * <strong>data</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="format::Formatter::c_strC"><span id="project0classformat_1_1_formatter_1a17e3dc1ca0e535428d5d1cc76ab433a6"></span><div class="line-block">
+<div class="line">const char * <strong>c_str</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="format::Formatter::strC"><span id="project0classformat_1_1_formatter_1a4214f353316d031e009b2b41164a7d4b"></span><div class="line-block">
+<div class="line">std::string <strong>str</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="format-string-syntax">
 <span id="formatstrings"></span><h1>Format String Syntax<a class="headerlink" href="#format-string-syntax" title="Permalink to this headline">¶</a></h1>
-<p>The <tt class="xref py py-meth docutils literal"><span class="pre">Format()</span></tt> function and the <a class="reference internal" href="#Formatter" title="Formatter"><tt class="xref py py-class docutils literal"><span class="pre">Formatter</span></tt></a> class share the same
-syntax for format strings.</p>
+<p>The <a class="reference internal" href="#format::Format__StringRef" title="format::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">format::Format()</span></tt></a> function and the <a class="reference internal" href="#format::Formatter" title="format::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">format::Formatter</span></tt></a>
+class share the same syntax for format strings.</p>
 <p>Format strings contain &#8220;replacement fields&#8221; surrounded by curly braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
 Anything that is not contained in braces is considered literal text, which is
 copied unchanged to the output.  If you need to include a brace character in the
@@ -455,7 +553,7 @@ following examples.</p>
         <li class="right" >
           <a href="index.html" title="Welcome to format’s documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">format 0.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">format 0.3 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
