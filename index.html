@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>String Formatting API &mdash; format 0.4 documentation</title>
+    <title>String Formatting API &mdash; format 0.5 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.4',
+        VERSION:     '0.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="format 0.4 documentation" href="#" /> 
+    <link rel="top" title="format 0.5 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">format 0.4 documentation</a> &raquo;</li> 
+        <li><a href="#">format 0.5 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -78,8 +78,8 @@
             
   <div class="section" id="string-formatting-api">
 <span id="id1"></span><h1>String Formatting API<a class="headerlink" href="#string-formatting-api" title="Permalink to this headline">¶</a></h1>
-<p id="format::Format__StringRef"><span id="project0namespaceformat_1aeabda57615c4fb07c7854be59d251765"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classformat_1_1_temp_formatter"><em>TempFormatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classformat_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<p id="fmt::Format__StringRef"><span id="project0namespacefmt_1ac5ed0ac3cdc9120bc8a3102e31a834eb"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_temp_formatter"><em>TempFormatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
 </div>
 </p>
 <blockquote>
@@ -89,8 +89,8 @@ arguments via operator <tt class="docutils literal"><span class="pre">&lt;&lt;</
 literal text and replacement fields surrounded by braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
 The formatter object replaces the fields with formatted arguments
 and stores the output in a memory buffer. The content of the buffer can
-be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with <a class="reference internal" href="#format::str__internal::FormatterProxy" title="format::str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">format::str()</span></tt></a> or
-accessed as a C string with <a class="reference internal" href="#format::c_str__internal::FormatterProxy" title="format::c_str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">format::c_str()</span></tt></a>.</p>
+be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with <a class="reference internal" href="#fmt::str__internal::FormatterProxy" title="fmt::str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::str()</span></tt></a> or
+accessed as a C string with <a class="reference internal" href="#fmt::c_str__internal::FormatterProxy" title="fmt::c_str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::c_str()</span></tt></a>.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;The answer is {}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">);</span>
 </pre></div>
@@ -99,11 +99,11 @@ accessed as a C string with <a class="reference internal" href="#format::c_str__
  </p>
 </div></blockquote>
 <div class="line-block">
-<div class="line" id="format::Formatter"><span id="project0classformat_1_1_formatter"></span><em>class</em> <strong>format::Formatter</strong></div>
+<div class="line" id="fmt::Formatter"><span id="project0classfmt_1_1_formatter"></span><em>class</em> <strong>fmt::Formatter</strong></div>
 </div>
 <blockquote>
 <div><p></p>
-<p><p>The <a class="reference internal" href="#format::Formatter" title="format::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">format::Formatter</span></tt></a> class provides string formatting
+<p><p>The <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a> class provides string formatting
 functionality similar to Python&#8217;s <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format">str.format</a>.
 The output is stored in a memory buffer that grows dynamically.</p>
 <p><strong>Example</strong>:</p>
@@ -121,7 +121,7 @@ output:</p>
 <p>The buffer can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
  </p>
 <em>Public Functions</em><blockquote>
-<div><p id="format::Formatter::Formatter"><span id="project0classformat_1_1_formatter_1a48105dec99b62d85404a5ebfc9260db2"></span><div class="line-block">
+<div><p id="fmt::Formatter::Formatter"><span id="project0classfmt_1_1_formatter_1a967dee8ef860ee0ef6d59582703ebae2"></span><div class="line-block">
 <div class="line"> <strong>Formatter</strong>()</div>
 </div>
 </p>
@@ -129,8 +129,8 @@ output:</p>
 <div><p>Constructs a formatter with an empty output buffer. </p>
 <p></p>
 </div></blockquote>
-<p id="format::Formatter::call-operator__StringRef"><span id="project0classformat_1_1_formatter_1a5e93d81bc232e21a1dc338dd15c3effe"></span><div class="line-block">
-<div class="line">internal::ArgInserter <strong>operator()</strong>(<a class="reference internal" href="#project0classformat_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<p id="fmt::Formatter::call-operator__StringRef"><span id="project0classfmt_1_1_formatter_1a42cc30799cae2743b03f5a9775c2e850"></span><div class="line-block">
+<div class="line">internal::ArgInserter <strong>operator()</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
 </div>
 </p>
 <blockquote>
@@ -140,27 +140,27 @@ output:</p>
 </div></blockquote>
 </div></blockquote>
 <div class="line-block">
-<div class="line">template &lt; typename Action = <a class="reference internal" href="#project0classformat_1_1_no_action"><em>NoAction</em></a> &gt;</div>
-<div class="line" id="format::TempFormatter"><span id="project0classformat_1_1_temp_formatter"></span><em>class</em> <strong>format::TempFormatter</strong></div>
+<div class="line">template &lt; typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a> &gt;</div>
+<div class="line" id="fmt::TempFormatter"><span id="project0classfmt_1_1_temp_formatter"></span><em>class</em> <strong>fmt::TempFormatter</strong></div>
 </div>
 <blockquote>
 <div><p>A formatter with an action performed when formatting is complete. </p>
 <p>Objects of this class normally exist only as temporaries returned by one of the formatting functions which explains the name. </p>
 <em>Public Functions</em><blockquote>
-<div><p id="format::TempFormatter:Action:::TempFormatter__StringRef.Action"><span id="project0classformat_1_1_temp_formatter_1afe2b14234aef90c312c4467e2cf2a709"></span><div class="line-block">
-<div class="line"> <strong>TempFormatter</strong>(<a class="reference internal" href="#project0classformat_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
+<div><p id="fmt::TempFormatter:Action:::TempFormatter__StringRef.Action"><span id="project0classfmt_1_1_temp_formatter_1a82ff56afd7b92849b01a7eb7f8138811"></span><div class="line-block">
+<div class="line"> <strong>TempFormatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
 </div>
 </p>
 <blockquote>
 <div><p></p>
 <p><p>Constructs a temporary formatter with a format string and an action.
 The action should be an unary function object that takes a const
-reference to <a class="reference internal" href="#format::Formatter" title="format::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">format::Formatter</span></tt></a> as an argument.
-See <a class="reference internal" href="#format::NoAction" title="format::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">format::NoAction</span></tt></a> and <tt class="xref cpp cpp-class docutils literal"><span class="pre">format::Write</span></tt> for
+reference to <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a> as an argument.
+See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::NoAction</span></tt></a> and <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Write</span></tt> for
 examples of action classes.</p>
  </p>
 </div></blockquote>
-<p id="format::TempFormatter:Action:::TempFormatter__ProxyCR"><span id="project0classformat_1_1_temp_formatter_1a9f0b674de6b1da8479959b1f76514cd4"></span><div class="line-block">
+<p id="fmt::TempFormatter:Action:::TempFormatter__ProxyCR"><span id="project0classfmt_1_1_temp_formatter_1a3b89a5d9076e8d41af0449247f8fb175"></span><div class="line-block">
 <div class="line"> <strong>TempFormatter</strong>(const Proxy &amp; p)</div>
 </div>
 </p>
@@ -168,7 +168,7 @@ examples of action classes.</p>
 <div><p>Constructs a temporary formatter from a proxy object. </p>
 <p></p>
 </div></blockquote>
-<p id="format::TempFormatter:Action:::~TempFormatter"><span id="project0classformat_1_1_temp_formatter_1af6e5106d895d70f35851179f736d440b"></span><div class="line-block">
+<p id="fmt::TempFormatter:Action:::~TempFormatter"><span id="project0classfmt_1_1_temp_formatter_1ae406d133f9fb27a2cc99a623e7572b1e"></span><div class="line-block">
 <div class="line"> <strong>~TempFormatter</strong>()</div>
 </div>
 </p>
@@ -176,7 +176,7 @@ examples of action classes.</p>
 <div><p>Performs the actual formatting, invokes the action and destroys the object. </p>
 <p></p>
 </div></blockquote>
-<p id="format::TempFormatter:Action:::castto-Proxy-operator"><span id="project0classformat_1_1_temp_formatter_1abfab8588241f4e2c8bfe1c7abc003064"></span><div class="line-block">
+<p id="fmt::TempFormatter:Action:::castto-Proxy-operator"><span id="project0classfmt_1_1_temp_formatter_1a1e1f42e1a916c1dfdc048a99581b813a"></span><div class="line-block">
 <div class="line"> <strong>operator Proxy</strong>()</div>
 </div>
 </p>
@@ -187,14 +187,14 @@ examples of action classes.</p>
 </div></blockquote>
 </div></blockquote>
 <div class="line-block">
-<div class="line" id="format::NoAction"><span id="project0classformat_1_1_no_action"></span><em>class</em> <strong>format::NoAction</strong></div>
+<div class="line" id="fmt::NoAction"><span id="project0classfmt_1_1_no_action"></span><em>class</em> <strong>fmt::NoAction</strong></div>
 </div>
 <blockquote>
 <div><p>A formatting action that does nothing. </p>
 <p></p>
 <em>Public Functions</em><blockquote>
-<div><p id="format::NoAction::call-operator__XC"><span id="project0classformat_1_1_no_action_1a5d8b2a24f9005c562cd798aeeb575157"></span><div class="line-block">
-<div class="line">void <strong>operator()</strong>(const  <a class="reference internal" href="#project0classformat_1_1_formatter"><em>Formatter</em></a>  &amp;)</div>
+<div><p id="fmt::NoAction::call-operator__XC"><span id="project0classfmt_1_1_no_action_1a14be4e4dd1e0ab8a426a721b6322a20c"></span><div class="line-block">
+<div class="line">void <strong>operator()</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_formatter"><em>Formatter</em></a>  &amp;)</div>
 </div>
 </p>
 <blockquote>
@@ -204,7 +204,7 @@ examples of action classes.</p>
 </div></blockquote>
 </div></blockquote>
 <div class="line-block">
-<div class="line" id="format::StringRef"><span id="project0classformat_1_1_string_ref"></span><em>class</em> <strong>format::StringRef</strong></div>
+<div class="line" id="fmt::StringRef"><span id="project0classfmt_1_1_string_ref"></span><em>class</em> <strong>fmt::StringRef</strong></div>
 </div>
 <blockquote>
 <div><p></p>
@@ -220,7 +220,7 @@ type to allow passing different types of strings in a function, for example:</p>
 </div>
  </p>
 <em>Public Functions</em><blockquote>
-<div><p id="format::StringRef::StringRef__cCP.std::s"><span id="project0classformat_1_1_string_ref_1ae8dd92d560fcc63fed3ce7310cf3f0b9"></span><div class="line-block">
+<div><p id="fmt::StringRef::StringRef__cCP.std::s"><span id="project0classfmt_1_1_string_ref_1ae52d750450de4bc442537dcee7511d62"></span><div class="line-block">
 <div class="line"> <strong>StringRef</strong>(const char * s, std::size_t size = 0)</div>
 </div>
 </p>
@@ -228,7 +228,7 @@ type to allow passing different types of strings in a function, for example:</p>
 <div><p>Constructs a string reference object from a C string and a size. </p>
 <p>If <tt class="docutils literal"><span class="pre">size</span></tt> is zero, which is the default, the size is computed with <tt class="docutils literal"><span class="pre">strlen</span></tt>. </p>
 </div></blockquote>
-<p id="format::StringRef::StringRef__ssCR"><span id="project0classformat_1_1_string_ref_1a3a87b4feaa191b41222fe200246aacff"></span><div class="line-block">
+<p id="fmt::StringRef::StringRef__ssCR"><span id="project0classfmt_1_1_string_ref_1a762b879cc00310d5ae9e65feb78f2784"></span><div class="line-block">
 <div class="line"> <strong>StringRef</strong>(const std::string &amp; s)</div>
 </div>
 </p>
@@ -236,7 +236,7 @@ type to allow passing different types of strings in a function, for example:</p>
 <div><p>Constructs a string reference from an <tt class="docutils literal"><span class="pre">std::string</span></tt> object. </p>
 <p></p>
 </div></blockquote>
-<p id="format::StringRef::castto-ss-operatorC"><span id="project0classformat_1_1_string_ref_1aaaf5717ca77dede5433bf5f51cfe91b3"></span><div class="line-block">
+<p id="fmt::StringRef::castto-ss-operatorC"><span id="project0classfmt_1_1_string_ref_1abc1ec027890b45d9a4ca794c7bbd78a6"></span><div class="line-block">
 <div class="line"> <strong>operator std::string</strong>()</div>
 </div>
 </p>
@@ -244,7 +244,7 @@ type to allow passing different types of strings in a function, for example:</p>
 <div><p>Converts a string reference to an <tt class="docutils literal"><span class="pre">std::string</span></tt> object. </p>
 <p></p>
 </div></blockquote>
-<p id="format::StringRef::c_strC"><span id="project0classformat_1_1_string_ref_1a41ba32d5ccc83cf87301cd7ae69b62e1"></span><div class="line-block">
+<p id="fmt::StringRef::c_strC"><span id="project0classfmt_1_1_string_ref_1a832562544bebd8e8a9892f9ad03adbfe"></span><div class="line-block">
 <div class="line">const char * <strong>c_str</strong>()</div>
 </div>
 </p>
@@ -252,7 +252,7 @@ type to allow passing different types of strings in a function, for example:</p>
 <div><p>Returns the pointer to a C string. </p>
 <p></p>
 </div></blockquote>
-<p id="format::StringRef::sizeC"><span id="project0classformat_1_1_string_ref_1a368a05f3651cab4cef6167da44579b78"></span><div class="line-block">
+<p id="fmt::StringRef::sizeC"><span id="project0classfmt_1_1_string_ref_1ab07de40dca6c3b1290c0d3c8746683ba"></span><div class="line-block">
 <div class="line">std::size_t <strong>size</strong>()</div>
 </div>
 </p>
@@ -262,7 +262,7 @@ type to allow passing different types of strings in a function, for example:</p>
 </div></blockquote>
 </div></blockquote>
 </div></blockquote>
-<p id="format::str__internal::FormatterProxy"><span id="project0namespaceformat_1a078cef34116d18a0e0dda0af0ca9e0c3"></span><div class="line-block">
+<p id="fmt::str__internal::FormatterProxy"><span id="project0namespacefmt_1aef52ed2c802a46d3599a6a754c91c677"></span><div class="line-block">
 <div class="line">std::string <strong>str</strong>(internal::FormatterProxy p)</div>
 </div>
 </p>
@@ -270,7 +270,7 @@ type to allow passing different types of strings in a function, for example:</p>
 <div><p>Returns the content of the output buffer as an <tt class="docutils literal"><span class="pre">std::string</span></tt>. </p>
 <p></p>
 </div></blockquote>
-<p id="format::c_str__internal::FormatterProxy"><span id="project0namespaceformat_1a2d43161c0a6894f5dc0f1e3b0b957cc2"></span><div class="line-block">
+<p id="fmt::c_str__internal::FormatterProxy"><span id="project0namespacefmt_1adc6edefbd690acbdacf0ce65b48e751b"></span><div class="line-block">
 <div class="line">const char * <strong>c_str</strong>(internal::FormatterProxy p)</div>
 </div>
 </p>
@@ -281,7 +281,7 @@ type to allow passing different types of strings in a function, for example:</p>
 </div>
 <div class="section" id="format-string-syntax">
 <span id="formatstrings"></span><h1>Format String Syntax<a class="headerlink" href="#format-string-syntax" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#format::Format__StringRef" title="format::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">format::Format()</span></tt></a> function and the <a class="reference internal" href="#format::Formatter" title="format::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">format::Formatter</span></tt></a>
+<p>The <a class="reference internal" href="#fmt::Format__StringRef" title="fmt::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::Format()</span></tt></a> function and the <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a>
 class share the same syntax for format strings.</p>
 <p>Format strings contain &#8220;replacement fields&#8221; surrounded by curly braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
 Anything that is not contained in braces is considered literal text, which is
@@ -650,7 +650,7 @@ following examples.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">format 0.4 documentation</a> &raquo;</li> 
+        <li><a href="#">format 0.5 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
