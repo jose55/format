@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>String Formatting API &mdash; format 0.5 documentation</title>
+    <title>String Formatting API &mdash; format 0.6 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.5',
+        VERSION:     '0.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="format 0.5 documentation" href="#" /> 
+    <link rel="top" title="format 0.6 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">format 0.5 documentation</a> &raquo;</li> 
+        <li><a href="#">format 0.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -43,6 +43,7 @@
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">String Formatting API</a></li>
+<li><a class="reference internal" href="#write-api">Write API</a></li>
 <li><a class="reference internal" href="#format-string-syntax">Format String Syntax</a><ul>
 <li><a class="reference internal" href="#format-specification-mini-language">Format Specification Mini-Language</a></li>
 <li><a class="reference internal" href="#format-examples">Format examples</a></li>
@@ -78,8 +79,8 @@
             
   <div class="section" id="string-formatting-api">
 <span id="id1"></span><h1>String Formatting API<a class="headerlink" href="#string-formatting-api" title="Permalink to this headline">¶</a></h1>
-<p id="fmt::Format__StringRef"><span id="project0namespacefmt_1ac5ed0ac3cdc9120bc8a3102e31a834eb"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classfmt_1_1_temp_formatter"><em>TempFormatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<p id="fmt::Format__StringRef"><span id="project0namespacefmt_1a26cceb646196d8979b3bf77f9a3382fa"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_temp_formatter"><em>TempFormatter</em></a> &lt; char &gt; <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
 </div>
 </p>
 <blockquote>
@@ -89,8 +90,8 @@ arguments via operator <tt class="docutils literal"><span class="pre">&lt;&lt;</
 literal text and replacement fields surrounded by braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
 The formatter object replaces the fields with formatted arguments
 and stores the output in a memory buffer. The content of the buffer can
-be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with <a class="reference internal" href="#fmt::str__internal::FormatterProxy" title="fmt::str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::str()</span></tt></a> or
-accessed as a C string with <a class="reference internal" href="#fmt::c_str__internal::FormatterProxy" title="fmt::c_str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::c_str()</span></tt></a>.</p>
+be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with <a class="reference internal" href="#fmt::str__BasicWriter:Char:CR" title="fmt::str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::str()</span></tt></a> or
+accessed as a C string with <a class="reference internal" href="#fmt::c_str__BasicWriter:Char:CR" title="fmt::c_str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::c_str()</span></tt></a>.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;The answer is {}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">);</span>
 </pre></div>
@@ -98,56 +99,19 @@ accessed as a C string with <a class="reference internal" href="#fmt::c_str__int
 <p>See also <a class="reference internal" href="#format-string-syntax">Format String Syntax</a>.</p>
  </p>
 </div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">doxygenclass: Cannot find class &#8220;fmt::Formatter&#8221; in doxygen xml output for project &#8220;project0&#8221; from directory: doxyxml</p>
+</div>
 <div class="line-block">
-<div class="line" id="fmt::Formatter"><span id="project0classfmt_1_1_formatter"></span><em>class</em> <strong>fmt::Formatter</strong></div>
-</div>
-<blockquote>
-<div><p></p>
-<p><p>The <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a> class provides string formatting
-functionality similar to Python&#8217;s <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format">str.format</a>.
-The output is stored in a memory buffer that grows dynamically.</p>
-<p><strong>Example</strong>:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="n">Formatter</span> <span class="n">out</span><span class="p">;</span>
-<span class="n">out</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="n">out</span><span class="p">(</span><span class="s">&quot;(-{:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>This will populate the buffer of the <tt class="docutils literal"><span class="pre">out</span></tt> object with the following
-output:</p>
-<div class="highlight-none"><div class="highlight"><pre>Current point:
-(-3.140000, +3.140000)
-</pre></div>
-</div>
-<p>The buffer can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
- </p>
-<em>Public Functions</em><blockquote>
-<div><p id="fmt::Formatter::Formatter"><span id="project0classfmt_1_1_formatter_1a967dee8ef860ee0ef6d59582703ebae2"></span><div class="line-block">
-<div class="line"> <strong>Formatter</strong>()</div>
-</div>
-</p>
-<blockquote>
-<div><p>Constructs a formatter with an empty output buffer. </p>
-<p></p>
-</div></blockquote>
-<p id="fmt::Formatter::call-operator__StringRef"><span id="project0classfmt_1_1_formatter_1a42cc30799cae2743b03f5a9775c2e850"></span><div class="line-block">
-<div class="line">internal::ArgInserter <strong>operator()</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
-</div>
-</p>
-<blockquote>
-<div><p>Formats a string appending the output to the internal buffer. </p>
-<p>Arguments are accepted through the returned <tt class="docutils literal"><span class="pre">ArgInserter</span></tt> object using inserter operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>. </p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-<div class="line-block">
-<div class="line">template &lt; typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a> &gt;</div>
+<div class="line">template &lt; typename Char, typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a> &gt;</div>
 <div class="line" id="fmt::TempFormatter"><span id="project0classfmt_1_1_temp_formatter"></span><em>class</em> <strong>fmt::TempFormatter</strong></div>
 </div>
 <blockquote>
 <div><p>A formatter with an action performed when formatting is complete. </p>
 <p>Objects of this class normally exist only as temporaries returned by one of the formatting functions which explains the name. </p>
 <em>Public Functions</em><blockquote>
-<div><p id="fmt::TempFormatter:Action:::TempFormatter__StringRef.Action"><span id="project0classfmt_1_1_temp_formatter_1a82ff56afd7b92849b01a7eb7f8138811"></span><div class="line-block">
+<div><p id="fmt::TempFormatter:Char.Action:::TempFormatter__StringRef.Action"><span id="project0classfmt_1_1_temp_formatter_1aec69a66d5f6b3c78c89ae7589edac392"></span><div class="line-block">
 <div class="line"> <strong>TempFormatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
 </div>
 </p>
@@ -155,12 +119,12 @@ output:</p>
 <div><p></p>
 <p><p>Constructs a temporary formatter with a format string and an action.
 The action should be an unary function object that takes a const
-reference to <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a> as an argument.
+reference to <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt> as an argument.
 See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::NoAction</span></tt></a> and <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Write</span></tt> for
 examples of action classes.</p>
  </p>
 </div></blockquote>
-<p id="fmt::TempFormatter:Action:::TempFormatter__ProxyCR"><span id="project0classfmt_1_1_temp_formatter_1a3b89a5d9076e8d41af0449247f8fb175"></span><div class="line-block">
+<p id="fmt::TempFormatter:Char.Action:::TempFormatter__ProxyCR"><span id="project0classfmt_1_1_temp_formatter_1ac4cfabba064b5b9587490097bcbf3356"></span><div class="line-block">
 <div class="line"> <strong>TempFormatter</strong>(const Proxy &amp; p)</div>
 </div>
 </p>
@@ -168,7 +132,7 @@ examples of action classes.</p>
 <div><p>Constructs a temporary formatter from a proxy object. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::TempFormatter:Action:::~TempFormatter"><span id="project0classfmt_1_1_temp_formatter_1ae406d133f9fb27a2cc99a623e7572b1e"></span><div class="line-block">
+<p id="fmt::TempFormatter:Char.Action:::~TempFormatter"><span id="project0classfmt_1_1_temp_formatter_1ad24c351d4cafd3ca9a66f4f2e2a775b9"></span><div class="line-block">
 <div class="line"> <strong>~TempFormatter</strong>()</div>
 </div>
 </p>
@@ -176,7 +140,7 @@ examples of action classes.</p>
 <div><p>Performs the actual formatting, invokes the action and destroys the object. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::TempFormatter:Action:::castto-Proxy-operator"><span id="project0classfmt_1_1_temp_formatter_1a1e1f42e1a916c1dfdc048a99581b813a"></span><div class="line-block">
+<p id="fmt::TempFormatter:Char.Action:::castto-Proxy-operator"><span id="project0classfmt_1_1_temp_formatter_1a5e35bbc13b387dbfc0d681fb204d7b24"></span><div class="line-block">
 <div class="line"> <strong>operator Proxy</strong>()</div>
 </div>
 </p>
@@ -193,8 +157,9 @@ examples of action classes.</p>
 <div><p>A formatting action that does nothing. </p>
 <p></p>
 <em>Public Functions</em><blockquote>
-<div><p id="fmt::NoAction::call-operator__XC"><span id="project0classfmt_1_1_no_action_1a14be4e4dd1e0ab8a426a721b6322a20c"></span><div class="line-block">
-<div class="line">void <strong>operator()</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_formatter"><em>Formatter</em></a>  &amp;)</div>
+<div><p id="fmt::NoAction::call-operator__XC"><span id="project0classfmt_1_1_no_action_1a75666f9d4e5b496104ab420db0f78dbd"></span><div class="line-block">
+<div class="line">template &lt; typename Char &gt;</div>
+<div class="line">void <strong>operator()</strong>(const  BasicFormatter &lt; Char &gt; &amp;)</div>
 </div>
 </p>
 <blockquote>
@@ -262,26 +227,71 @@ type to allow passing different types of strings in a function, for example:</p>
 </div></blockquote>
 </div></blockquote>
 </div></blockquote>
-<p id="fmt::str__internal::FormatterProxy"><span id="project0namespacefmt_1aef52ed2c802a46d3599a6a754c91c677"></span><div class="line-block">
-<div class="line">std::string <strong>str</strong>(internal::FormatterProxy p)</div>
+<p id="fmt::str__BasicWriter:Char:CR"><span id="project0namespacefmt_1a8ef33f9e185c06dc27e5620d858b86cf"></span><div class="line-block">
+<div class="line">template &lt; typename Char &gt;</div>
+<div class="line">std::basic_string&lt; Char &gt; <strong>str</strong>(const  BasicWriter &lt; Char &gt; &amp; f)</div>
 </div>
 </p>
 <blockquote>
-<div><p>Returns the content of the output buffer as an <tt class="docutils literal"><span class="pre">std::string</span></tt>. </p>
+<div><p></p>
 <p></p>
 </div></blockquote>
-<p id="fmt::c_str__internal::FormatterProxy"><span id="project0namespacefmt_1adc6edefbd690acbdacf0ce65b48e751b"></span><div class="line-block">
-<div class="line">const char * <strong>c_str</strong>(internal::FormatterProxy p)</div>
+<p id="fmt::c_str__BasicWriter:Char:CR"><span id="project0namespacefmt_1ad87b947db58914541c10c0016c3746e2"></span><div class="line-block">
+<div class="line">template &lt; typename Char &gt;</div>
+<div class="line">const Char * <strong>c_str</strong>(const  BasicWriter &lt; Char &gt; &amp; f)</div>
 </div>
 </p>
 <blockquote>
-<div><p>Returns a pointer to the output buffer content with terminating null character appended. </p>
+<div><p></p>
 <p></p>
+</div></blockquote>
+</div>
+<div class="section" id="write-api">
+<h1>Write API<a class="headerlink" href="#write-api" title="Permalink to this headline">¶</a></h1>
+<p id="fmt::oct__i"><span id="project0namespacefmt_1a24dbdffaf468b794154a7aa4e99fd59d"></span><div class="line-block">
+<div class="line">IntFormatter &lt; int,  TypeSpec &lt;&#8217;o&#8217;&gt; &gt; <strong>oct</strong>(int value)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns an integer formatter that formats the value in base 8. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::hex__i"><span id="project0namespacefmt_1a3f08d4af885d0d9f5b1aae468ee67182"></span><div class="line-block">
+<div class="line">IntFormatter &lt; int,  TypeSpec &lt;&#8217;x&#8217;&gt; &gt; <strong>hex</strong>(int value)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns an integer formatter that formats the value in base 16 using lower-case letters for the digits above 9. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::hexu__i"><span id="project0namespacefmt_1a80a7cb6a4c1a7b0c0307a35433eb61ca"></span><div class="line-block">
+<div class="line">IntFormatter &lt; int,  TypeSpec &lt;&#8217;X&#8217;&gt; &gt; <strong>hexu</strong>(int value)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns an integer formatter that formats the value in base 16 using upper-case letters for the digits above 9. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::pad__i.unsigned-i.c"><span id="project0namespacefmt_1adb3eb2bf427e7006a89fc37744f70ed9"></span><div class="line-block">
+<div class="line">template &lt; char TYPE_CODE &gt;</div>
+<div class="line">IntFormatter &lt; int,  AlignTypeSpec &lt; TYPE_CODE &gt; &gt; <strong>pad</strong>(int value, unsigned width, char fill = &#8216; &#8216;)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Returns an integer formatter that pads the formatted argument with the fill
+character to the specified width using the default (right) alignment.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">BasicWriter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">pad</span><span class="p">(</span><span class="n">hex</span><span class="p">(</span><span class="mh">0xcafe</span><span class="p">),</span> <span class="mi">8</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">));</span>
+<span class="c1">// s == &quot;0000cafe&quot;</span>
+</pre></div>
+</div>
+ </p>
 </div></blockquote>
 </div>
 <div class="section" id="format-string-syntax">
 <span id="formatstrings"></span><h1>Format String Syntax<a class="headerlink" href="#format-string-syntax" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#fmt::Format__StringRef" title="fmt::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::Format()</span></tt></a> function and the <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a>
+<p>The <a class="reference internal" href="#fmt::Format__StringRef" title="fmt::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::Format()</span></tt></a> function and the <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt>
 class share the same syntax for format strings.</p>
 <p>Format strings contain &#8220;replacement fields&#8221; surrounded by curly braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
 Anything that is not contained in braces is considered literal text, which is
@@ -650,7 +660,7 @@ following examples.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">format 0.5 documentation</a> &raquo;</li> 
+        <li><a href="#">format 0.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
