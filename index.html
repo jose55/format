@@ -99,10 +99,48 @@ accessed as a C string with <a class="reference internal" href="#fmt::c_str__Bas
 <p>See also <a class="reference internal" href="#format-string-syntax">Format String Syntax</a>.</p>
  </p>
 </div></blockquote>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenclass: Cannot find class &#8220;fmt::Formatter&#8221; in doxygen xml output for project &#8220;project0&#8221; from directory: doxyxml</p>
+<div class="line-block">
+<div class="line">template &lt; typename Char &gt;</div>
+<div class="line" id="fmt::BasicFormatter"><span id="project0classfmt_1_1_basic_formatter"></span><em>class</em> <strong>fmt::BasicFormatter</strong></div>
 </div>
+<blockquote>
+<div><p></p>
+<p><p>The <a class="reference internal" href="#fmt::BasicFormatter" title="fmt::BasicFormatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt></a> template provides string formatting
+functionality similar to Python&#8217;s <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format">str.format</a>.
+The output is stored in a memory buffer that grows dynamically.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Formatter</span> <span class="n">out</span><span class="p">;</span>
+<span class="n">out</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="n">out</span><span class="p">(</span><span class="s">&quot;(-{:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This will populate the buffer of the <tt class="docutils literal"><span class="pre">out</span></tt> object with the following
+output:</p>
+<div class="highlight-none"><div class="highlight"><pre>Current point:
+(-3.140000, +3.140000)
+</pre></div>
+</div>
+<p>The buffer can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
+ </p>
+<em>Public Functions</em><blockquote>
+<div><p id="fmt::BasicFormatter:Char:::BasicFormatter"><span id="project0classfmt_1_1_basic_formatter_1aac56bb9971f213dfadf87059a766fec2"></span><div class="line-block">
+<div class="line"> <strong>BasicFormatter</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Constructs a formatter with an empty output buffer. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicFormatter:Char:::call-operator__StringRef"><span id="project0classfmt_1_1_basic_formatter_1afa7ce4c99606f057c2f0469cc4ac0a76"></span><div class="line-block">
+<div class="line">internal::ArgInserter &lt; Char &gt; <strong>operator()</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Formats a string appending the output to the internal buffer. </p>
+<p>Arguments are accepted through the returned <tt class="docutils literal"><span class="pre">ArgInserter</span></tt> object using inserter operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>. </p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 <div class="line-block">
 <div class="line">template &lt; typename Char, typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a> &gt;</div>
 <div class="line" id="fmt::TempFormatter"><span id="project0classfmt_1_1_temp_formatter"></span><em>class</em> <strong>fmt::TempFormatter</strong></div>
@@ -119,7 +157,7 @@ accessed as a C string with <a class="reference internal" href="#fmt::c_str__Bas
 <div><p></p>
 <p><p>Constructs a temporary formatter with a format string and an action.
 The action should be an unary function object that takes a const
-reference to <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt> as an argument.
+reference to <a class="reference internal" href="#fmt::BasicFormatter" title="fmt::BasicFormatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt></a> as an argument.
 See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::NoAction</span></tt></a> and <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Write</span></tt> for
 examples of action classes.</p>
  </p>
@@ -159,7 +197,7 @@ examples of action classes.</p>
 <em>Public Functions</em><blockquote>
 <div><p id="fmt::NoAction::call-operator__XC"><span id="project0classfmt_1_1_no_action_1a75666f9d4e5b496104ab420db0f78dbd"></span><div class="line-block">
 <div class="line">template &lt; typename Char &gt;</div>
-<div class="line">void <strong>operator()</strong>(const  BasicFormatter &lt; Char &gt; &amp;)</div>
+<div class="line">void <strong>operator()</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_basic_formatter"><em>BasicFormatter</em></a> &lt; Char &gt; &amp;)</div>
 </div>
 </p>
 <blockquote>
