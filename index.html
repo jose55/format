@@ -79,8 +79,8 @@
             
   <div class="section" id="string-formatting-api">
 <span id="id1"></span><h1>String Formatting API<a class="headerlink" href="#string-formatting-api" title="Permalink to this headline">¶</a></h1>
-<p id="fmt::Format__StringRef"><span id="project0namespacefmt_1a26cceb646196d8979b3bf77f9a3382fa"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classfmt_1_1_temp_formatter"><em>TempFormatter</em></a> &lt; char &gt; <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<p id="fmt::Format__StringRef"><span id="project0namespacefmt_1ac5ed0ac3cdc9120bc8a3102e31a834eb"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_temp_formatter"><em>TempFormatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
 </div>
 </p>
 <blockquote>
@@ -142,14 +142,14 @@ output:</p>
 </div></blockquote>
 </div></blockquote>
 <div class="line-block">
-<div class="line">template &lt; typename Char, typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a> &gt;</div>
+<div class="line">template &lt; typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a>, typename Char = char &gt;</div>
 <div class="line" id="fmt::TempFormatter"><span id="project0classfmt_1_1_temp_formatter"></span><em>class</em> <strong>fmt::TempFormatter</strong></div>
 </div>
 <blockquote>
 <div><p>A formatter with an action performed when formatting is complete. </p>
 <p>Objects of this class normally exist only as temporaries returned by one of the formatting functions which explains the name. </p>
 <em>Public Functions</em><blockquote>
-<div><p id="fmt::TempFormatter:Char.Action:::TempFormatter__StringRef.Action"><span id="project0classfmt_1_1_temp_formatter_1aec69a66d5f6b3c78c89ae7589edac392"></span><div class="line-block">
+<div><p id="fmt::TempFormatter:Action.Char:::TempFormatter__StringRef.Action"><span id="project0classfmt_1_1_temp_formatter_1a9e5a4b9d4c632248f1ca65fd6e81341d"></span><div class="line-block">
 <div class="line"> <strong>TempFormatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
 </div>
 </p>
@@ -162,7 +162,7 @@ See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><t
 examples of action classes.</p>
  </p>
 </div></blockquote>
-<p id="fmt::TempFormatter:Char.Action:::TempFormatter__ProxyCR"><span id="project0classfmt_1_1_temp_formatter_1ac4cfabba064b5b9587490097bcbf3356"></span><div class="line-block">
+<p id="fmt::TempFormatter:Action.Char:::TempFormatter__ProxyCR"><span id="project0classfmt_1_1_temp_formatter_1aaf6691e28a0582f0328833cffd61718d"></span><div class="line-block">
 <div class="line"> <strong>TempFormatter</strong>(const Proxy &amp; p)</div>
 </div>
 </p>
@@ -170,7 +170,7 @@ examples of action classes.</p>
 <div><p>Constructs a temporary formatter from a proxy object. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::TempFormatter:Char.Action:::~TempFormatter"><span id="project0classfmt_1_1_temp_formatter_1ad24c351d4cafd3ca9a66f4f2e2a775b9"></span><div class="line-block">
+<p id="fmt::TempFormatter:Action.Char:::~TempFormatter"><span id="project0classfmt_1_1_temp_formatter_1af19b397bbdec4a23417c4ba8f7e36bf1"></span><div class="line-block">
 <div class="line"> <strong>~TempFormatter</strong>()</div>
 </div>
 </p>
@@ -178,7 +178,7 @@ examples of action classes.</p>
 <div><p>Performs the actual formatting, invokes the action and destroys the object. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::TempFormatter:Char.Action:::castto-Proxy-operator"><span id="project0classfmt_1_1_temp_formatter_1a5e35bbc13b387dbfc0d681fb204d7b24"></span><div class="line-block">
+<p id="fmt::TempFormatter:Action.Char:::castto-Proxy-operator"><span id="project0classfmt_1_1_temp_formatter_1a41f845d8bd4306f79c10b48b65657a06"></span><div class="line-block">
 <div class="line"> <strong>operator Proxy</strong>()</div>
 </div>
 </p>
