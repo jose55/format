@@ -78,7 +78,7 @@
   <div class="section" id="string-formatting-api">
 <span id="id1"></span><h1>String Formatting API<a class="headerlink" href="#string-formatting-api" title="Permalink to this headline">¶</a></h1>
 <p id="fmt::Format__StringRef"><span id="project0namespacefmt_1a9d60d5183f72888fb5287fcba0f149b6"></span><div class="line-block">
-<div class="line">Formatter <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_formatter"><em>Formatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
 </div>
 </p>
 <blockquote>
@@ -182,10 +182,53 @@ by one of the formatting functions.</p>
 </div></blockquote>
 </div></blockquote>
 </div></blockquote>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenclass: Cannot find class &#8220;fmt::TempFormatter&#8221; in doxygen xml output for project &#8220;project0&#8221; from directory: doxyxml</p>
+<div class="line-block">
+<div class="line">template &lt; typename Action = <a class="reference internal" href="#project0classfmt_1_1_no_action"><em>NoAction</em></a>, typename Char = char &gt;</div>
+<div class="line" id="fmt::Formatter"><span id="project0classfmt_1_1_formatter"></span><em>class</em> <strong>fmt::Formatter</strong></div>
 </div>
+<blockquote>
+<div><p>A formatter with an action performed when formatting is complete. </p>
+<p>Objects of this class normally exist only as temporaries returned by one of the formatting functions. </p>
+<em>Public Functions</em><blockquote>
+<div><p id="fmt::Formatter:Action.Char:::Formatter__StringRef.Action"><span id="project0classfmt_1_1_formatter_1a6ed3e2e723174d32badd06c59b5f21d2"></span><div class="line-block">
+<div class="line"> <strong>Formatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Constructs a formatter with a format string and an action.
+The action should be an unary function object that takes a const
+reference to <a class="reference internal" href="#fmt::BasicFormatter" title="fmt::BasicFormatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt></a> as an argument.
+See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::NoAction</span></tt></a> and <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Write</span></tt> for
+examples of action classes.</p>
+ </p>
+</div></blockquote>
+<p id="fmt::Formatter:Action.Char:::Formatter__ProxyCR"><span id="project0classfmt_1_1_formatter_1a7282018c73ce7dfaa8f70717e0d0c2da"></span><div class="line-block">
+<div class="line"> <strong>Formatter</strong>(const Proxy &amp; p)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Constructs a formatter from a proxy object. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::Formatter:Action.Char:::~Formatter"><span id="project0classfmt_1_1_formatter_1a25979db561f41c4bf69294bb87170c38"></span><div class="line-block">
+<div class="line"> <strong>~Formatter</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Performs the actual formatting, invokes the action and destroys the object. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::Formatter:Action.Char:::castto-Proxy-operator"><span id="project0classfmt_1_1_formatter_1a7ca47c7ef8fad682421e9c7123fa3224"></span><div class="line-block">
+<div class="line"> <strong>operator Proxy</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Converts the formatter into a proxy object. </p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 <div class="line-block">
 <div class="line" id="fmt::NoAction"><span id="project0classfmt_1_1_no_action"></span><em>class</em> <strong>fmt::NoAction</strong></div>
 </div>
@@ -327,7 +370,7 @@ character to the specified width using the default (right) alignment.</p>
 </div>
 <div class="section" id="format-string-syntax">
 <span id="formatstrings"></span><h1>Format String Syntax<a class="headerlink" href="#format-string-syntax" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#fmt::Format__StringRef" title="fmt::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::Format()</span></tt></a> function and the <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt>
+<p>The <a class="reference internal" href="#fmt::Format__StringRef" title="fmt::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::Format()</span></tt></a> function and the <a class="reference internal" href="#fmt::Formatter" title="fmt::Formatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Formatter</span></tt></a>
 class share the same syntax for format strings.</p>
 <p>Format strings contain &#8220;replacement fields&#8221; surrounded by curly braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
 Anything that is not contained in braces is considered literal text, which is
