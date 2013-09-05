@@ -83,13 +83,15 @@
 </p>
 <blockquote>
 <div><p></p>
-<p><p>Formats a string. Returns a temporary formatter object that accepts
-arguments via operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>. <em>format</em> is a format string that contains
-literal text and replacement fields surrounded by braces <tt class="docutils literal"><span class="pre">{}</span></tt>.
-The formatter object replaces the fields with formatted arguments
-and stores the output in a memory buffer. The content of the buffer can
-be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with <a class="reference internal" href="#fmt::str__BasicWriter:Char:CR" title="fmt::str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::str()</span></tt></a> or
-accessed as a C string with <a class="reference internal" href="#fmt::c_str__BasicWriter:Char:CR" title="fmt::c_str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::c_str()</span></tt></a>.</p>
+<p><p>Formats a string similarly to Python&#8217;s <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format">str.format</a>.
+Returns a temporary formatter object that accepts arguments via
+operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>.</p>
+<p><em>format</em> is a format string that contains literal text and replacement
+fields surrounded by braces <tt class="docutils literal"><span class="pre">{}</span></tt>. The formatter object replaces the
+fields with formatted arguments and stores the output in a memory buffer.
+The content of the buffer can be converted to <tt class="docutils literal"><span class="pre">std::string</span></tt> with
+<a class="reference internal" href="#fmt::str__BasicWriter:Char:CR" title="fmt::str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::str()</span></tt></a> or accessed as a C string with
+<a class="reference internal" href="#fmt::c_str__BasicWriter:Char:CR" title="fmt::c_str"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::c_str()</span></tt></a>.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;The answer is {}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">);</span>
 </pre></div>
@@ -99,81 +101,135 @@ accessed as a C string with <a class="reference internal" href="#fmt::c_str__Bas
 </div></blockquote>
 <div class="line-block">
 <div class="line">template &lt; typename Char &gt;</div>
-<div class="line" id="fmt::BasicFormatter"><span id="project0classfmt_1_1_basic_formatter"></span><em>class</em> <strong>fmt::BasicFormatter</strong></div>
+<div class="line" id="fmt::BasicWriter"><span id="project0classfmt_1_1_basic_writer"></span><em>class</em> <strong>fmt::BasicWriter</strong></div>
 </div>
 <blockquote>
+<div><p>This template provides operations for formatting and writing data into a character stream. </p>
+<p>The output is stored in a memory buffer that grows dynamically. </p>
+<em>Public Functions</em><blockquote>
+<div><p id="fmt::BasicWriter:Char:::sizeC"><span id="project0classfmt_1_1_basic_writer_1a1b6721b4ba4d3fa18ac781a36616cc2a"></span><div class="line-block">
+<div class="line">std::size_t <strong>size</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns the number of characters written to the output buffer. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::dataC"><span id="project0classfmt_1_1_basic_writer_1a6f3f431fab4a937cd6844a5bda609391"></span><div class="line-block">
+<div class="line">const Char * <strong>data</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns a pointer to the output buffer content. </p>
+<p>No terminating null character is appended. </p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::c_strC"><span id="project0classfmt_1_1_basic_writer_1a8b68001f5c1c0ea851ddaef27dcbc691"></span><div class="line-block">
+<div class="line">const Char * <strong>c_str</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns a pointer to the output buffer content with terminating null character appended. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::strC"><span id="project0classfmt_1_1_basic_writer_1a91f06ced6e063ee77a99740e0e79faf6"></span><div class="line-block">
+<div class="line">std::basic_string&lt; Char &gt; <strong>str</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns the content of the output buffer as an <tt class="docutils literal"><span class="pre">std::string</span></tt>. </p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__i"><span id="project0classfmt_1_1_basic_writer_1a3d21148f336a76a71b39abb2fd6c0f88"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(int value)</div>
+</div>
+</p>
+<blockquote>
 <div><p></p>
-<p><p>The <a class="reference internal" href="#fmt::BasicFormatter" title="fmt::BasicFormatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt></a> template provides string formatting
-functionality similar to Python&#8217;s <a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#str.format">str.format</a>.
-The output is stored in a memory buffer that grows dynamically.
-The class provides operator&lt;&lt; for feeding formatting arguments.</p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__unsigned-i"><span id="project0classfmt_1_1_basic_writer_1a7ec4d6fb4cf9173b14d4ee100fd4a428"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(unsigned value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__double"><span id="project0classfmt_1_1_basic_writer_1afa435e67e3db3d214f0272b10c0a3878"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(double value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__Char"><span id="project0classfmt_1_1_basic_writer_1a9947ae8a3177ca4a6f0f4e1198d5f0dc"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(Char value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__CharCP"><span id="project0classfmt_1_1_basic_writer_1adcebd993271e288e0546f7598629de8b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(const Char * value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__IntFormatter:T.Spec:CR"><span id="project0classfmt_1_1_basic_writer_1a58f301077749dcadbeb8c04b50a359f3"></span><div class="line-block">
+<div class="line">template &lt; typename T, typename  Spec &gt;</div>
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(const  IntFormatter &lt; T,  Spec  &gt; &amp; f)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::Write__std::basic_string:c:CR.FormatSpecCR"><span id="project0classfmt_1_1_basic_writer_1ac4d177b05c932282579244173cedcc73"></span><div class="line-block">
+<div class="line">void <strong>Write</strong>(const std::basic_string&lt; char &gt; &amp; s, const  FormatSpec  &amp; spec)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::Format__StringRef"><span id="project0classfmt_1_1_basic_writer_1a6d57df87f73c884b0bac68ccf318aaee"></span><div class="line-block">
+<div class="line">BasicFormatter &lt; Char &gt; <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Formats a string sending the output to the writer. Arguments are
+accepted through the returned <cite>BasicFormatter</cite> object using inserter
+operator <cite>&lt;&lt;</cite>.</p>
 <p><strong>Example</strong>:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="n">Formatter</span> <span class="n">out</span><span class="p">;</span>
-<span class="n">out</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="n">out</span><span class="p">(</span><span class="s">&quot;({:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span><span class="p">;</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Writer</span> <span class="n">out</span><span class="p">;</span>
+<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;({:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>This will populate the buffer of the <tt class="docutils literal"><span class="pre">out</span></tt> object with the following
-output:</p>
+<p>This will write the following output to the <tt class="docutils literal"><span class="pre">out</span></tt> object:</p>
 <div class="highlight-none"><div class="highlight"><pre>Current point:
 (-3.140000, +3.140000)
 </pre></div>
 </div>
-<p>The buffer can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
-<p>Objects of this class normally exists only as temporaries returned
-by one of the formatting functions.</p>
+<p>The output can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
  </p>
-<em>Public Functions</em><blockquote>
-<div><p id="fmt::BasicFormatter:Char:::BasicFormatter__BasicWriter:Char:R.CharCP"><span id="project0classfmt_1_1_basic_formatter_1a4c69319cf33fb730c5eef06573faccec"></span><div class="line-block">
-<div class="line"> <strong>BasicFormatter</strong>(BasicWriter &lt; Char &gt; &amp; w, const Char * format = 0)</div>
-</div>
-</p>
-<blockquote>
-<div><p>Constructs a formatter with an empty output buffer. </p>
-<p></p>
 </div></blockquote>
-<p id="fmt::BasicFormatter:Char:::~BasicFormatter"><span id="project0classfmt_1_1_basic_formatter_1ad7fd22f26d8ef4e235f07067abe9dcb6"></span><div class="line-block">
-<div class="line"> <strong>~BasicFormatter</strong>()</div>
+<p id="fmt::BasicWriter:Char:::Clear"><span id="project0classfmt_1_1_basic_writer_1a5007dd5774913f279ebb453ec251dbcd"></span><div class="line-block">
+<div class="line">void <strong>Clear</strong>()</div>
 </div>
 </p>
 <blockquote>
 <div><p></p>
 <p></p>
 </div></blockquote>
-<p id="fmt::BasicFormatter:Char:::BasicFormatter__ProxyCR"><span id="project0classfmt_1_1_basic_formatter_1aa85a0f625b5db4fbb811a66310e54d01"></span><div class="line-block">
-<div class="line"> <strong>BasicFormatter</strong>(const Proxy &amp; p)</div>
-</div>
-</p>
-<blockquote>
-<div><p>Constructs a formatter from a proxy object. </p>
-<p></p>
-</div></blockquote>
-<p id="fmt::BasicFormatter:Char:::castto-Proxy-operator"><span id="project0classfmt_1_1_basic_formatter_1a5cc0aa18c07c68c0436f9c1f72008d73"></span><div class="line-block">
-<div class="line"> <strong>operator Proxy</strong>()</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id="fmt::BasicFormatter:Char:::lshift-operator__ArgCR"><span id="project0classfmt_1_1_basic_formatter_1adf869c5963d9997bca07bbd6e7bd3f01"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_formatter"><em>BasicFormatter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(const Arg &amp; arg)</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id="fmt::BasicFormatter:Char:::castto-internal::FormatterProxy:Char:-operator"><span id="project0classfmt_1_1_basic_formatter_1abe3836402dfb326152a1191ec93f90e5"></span><div class="line-block">
-<div class="line"> <strong>operator internal::FormatterProxy&lt; Char &gt;</strong>()</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id="fmt::BasicFormatter:Char:::castto-StringRef-operator"><span id="project0classfmt_1_1_basic_formatter_1a12facaaa7adaab329109afd35d7e6d69"></span><div class="line-block">
-<div class="line"> <strong>operator StringRef</strong>()</div>
+<p id="fmt::BasicWriter:Char:::lshift-operator__IntFormatter:T.Spec:CR"><span id="project0classfmt_1_1_basic_writer_1ac799c7491c8b7330ddc82c81bb78ca1e"></span><div class="line-block">
+<div class="line">template &lt; typename T, typename  Spec &gt;</div>
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a> &lt; Char &gt; &amp; <strong>operator&lt;&lt;</strong>(const  IntFormatter &lt; T,  Spec  &gt; &amp; f)</div>
 </div>
 </p>
 <blockquote>
@@ -187,8 +243,27 @@ by one of the formatting functions.</p>
 <div class="line" id="fmt::Formatter"><span id="project0classfmt_1_1_formatter"></span><em>class</em> <strong>fmt::Formatter</strong></div>
 </div>
 <blockquote>
-<div><p>A formatter with an action performed when formatting is complete. </p>
-<p>Objects of this class normally exist only as temporaries returned by one of the formatting functions. </p>
+<div><p></p>
+<p><p>A formatter with an action performed when formatting is complete.
+Objects of this class normally exist only as temporaries returned
+by one of the formatting functions. You can use this class to create
+your own functions similar to <a class="reference internal" href="#fmt::Format__StringRef" title="fmt::Format"><tt class="xref cpp cpp-func docutils literal"><span class="pre">fmt::Format()</span></tt></a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">struct</span> <span class="n">PrintError</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">fmt</span><span class="o">::</span><span class="n">Writer</span> <span class="o">&amp;</span><span class="n">w</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Error: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">w</span><span class="p">.</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Formats an error message and prints it to std::cerr.</span>
+<span class="n">fmt</span><span class="o">::</span><span class="n">Formatter</span><span class="o">&lt;</span><span class="n">PrintError</span><span class="o">&gt;</span> <span class="n">ReportError</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">format</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">fmt</span><span class="o">::</span><span class="n">Formatter</span><span class="o">&lt;</span><span class="n">PrintError</span><span class="o">&gt;</span><span class="p">(</span><span class="n">format</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">ReportError</span><span class="p">(</span><span class="s">&quot;File not found: {}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">path</span><span class="p">;</span>
+</pre></div>
+</div>
+ </p>
 <em>Public Functions</em><blockquote>
 <div><p id="fmt::Formatter:Action.Char:::Formatter__StringRef.Action"><span id="project0classfmt_1_1_formatter_1a6ed3e2e723174d32badd06c59b5f21d2"></span><div class="line-block">
 <div class="line"> <strong>Formatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
@@ -198,8 +273,8 @@ by one of the formatting functions.</p>
 <div><p></p>
 <p><p>Constructs a formatter with a format string and an action.
 The action should be an unary function object that takes a const
-reference to <a class="reference internal" href="#fmt::BasicFormatter" title="fmt::BasicFormatter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicFormatter</span></tt></a> as an argument.
-See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::NoAction</span></tt></a> and <tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Write</span></tt> for
+reference to <a class="reference internal" href="#fmt::BasicWriter" title="fmt::BasicWriter"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::BasicWriter</span></tt></a> as an argument.
+See <a class="reference internal" href="#fmt::NoAction" title="fmt::NoAction"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::NoAction</span></tt></a> and <a class="reference internal" href="#fmt::Write" title="fmt::Write"><tt class="xref cpp cpp-class docutils literal"><span class="pre">fmt::Write</span></tt></a> for
 examples of action classes.</p>
  </p>
 </div></blockquote>
@@ -238,11 +313,28 @@ examples of action classes.</p>
 <em>Public Functions</em><blockquote>
 <div><p id="fmt::NoAction::call-operator__XC"><span id="project0classfmt_1_1_no_action_1a54dad85ee9942b8fe60671b0579b6f6b"></span><div class="line-block">
 <div class="line">template &lt; typename Char &gt;</div>
-<div class="line">void <strong>operator()</strong>(const  BasicWriter &lt; Char &gt; &amp;)</div>
+<div class="line">void <strong>operator()</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a> &lt; Char &gt; &amp;)</div>
 </div>
 </p>
 <blockquote>
 <div><p>Does nothing. </p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<div class="line-block">
+<div class="line" id="fmt::Write"><span id="project0classfmt_1_1_write"></span><em>class</em> <strong>fmt::Write</strong></div>
+</div>
+<blockquote>
+<div><p>A formatting action that writes formatted output to stdout. </p>
+<p></p>
+<em>Public Functions</em><blockquote>
+<div><p id="fmt::Write::call-operator__BasicWriter:c:CRC"><span id="project0classfmt_1_1_write_1acf3bb8e7d0ed1e634b6e66ea4f7fd8d3"></span><div class="line-block">
+<div class="line">void <strong>operator()</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a> &lt; char &gt; &amp; w)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Write the output to stdout. </p>
 <p></p>
 </div></blockquote>
 </div></blockquote>
@@ -308,7 +400,7 @@ type to allow passing different types of strings in a function, for example:</p>
 </div></blockquote>
 <p id="fmt::str__BasicWriter:Char:CR"><span id="project0namespacefmt_1a8ef33f9e185c06dc27e5620d858b86cf"></span><div class="line-block">
 <div class="line">template &lt; typename Char &gt;</div>
-<div class="line">std::basic_string&lt; Char &gt; <strong>str</strong>(const  BasicWriter &lt; Char &gt; &amp; f)</div>
+<div class="line">std::basic_string&lt; Char &gt; <strong>str</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a> &lt; Char &gt; &amp; f)</div>
 </div>
 </p>
 <blockquote>
@@ -317,7 +409,7 @@ type to allow passing different types of strings in a function, for example:</p>
 </div></blockquote>
 <p id="fmt::c_str__BasicWriter:Char:CR"><span id="project0namespacefmt_1ad87b947db58914541c10c0016c3746e2"></span><div class="line-block">
 <div class="line">template &lt; typename Char &gt;</div>
-<div class="line">const Char * <strong>c_str</strong>(const  BasicWriter &lt; Char &gt; &amp; f)</div>
+<div class="line">const Char * <strong>c_str</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a> &lt; Char &gt; &amp; f)</div>
 </div>
 </p>
 <blockquote>
