@@ -78,7 +78,7 @@
   <div class="section" id="string-formatting-api">
 <span id="id1"></span><h1>String Formatting API<a class="headerlink" href="#string-formatting-api" title="Permalink to this headline">¶</a></h1>
 <p id="fmt::Format__StringRef"><span id="project0namespacefmt_1a9d60d5183f72888fb5287fcba0f149b6"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classfmt_1_1_formatter"><em>Formatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_formatter"><em>Formatter</em></a> <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_basic_string_ref"><em>StringRef</em></a> format)</div>
 </div>
 </p>
 <blockquote>
@@ -104,8 +104,44 @@ The content of the buffer can be converted to <tt class="docutils literal"><span
 <div class="line" id="fmt::BasicWriter"><span id="project0classfmt_1_1_basic_writer"></span><em>class</em> <strong>fmt::BasicWriter</strong></div>
 </div>
 <blockquote>
-<div><p>This template provides operations for formatting and writing data into a character stream. </p>
-<p>The output is stored in a memory buffer that grows dynamically. </p>
+<div><p></p>
+<p><p>This template provides operations for formatting and writing data into
+a character stream. The output is stored in a memory buffer that grows
+dynamically.</p>
+<p>You can use one of the following typedefs for common character types:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Definition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Writer</td>
+<td>BasicWriter&lt;char&gt;</td>
+</tr>
+<tr class="row-odd"><td>WWriter</td>
+<td>BasicWriter&lt;wchar_t&gt;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Writer</span> <span class="n">out</span><span class="p">;</span>
+<span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The answer is &quot;</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;({:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This will write the following output to the <tt class="docutils literal"><span class="pre">out</span></tt> object:</p>
+<div class="highlight-none"><div class="highlight"><pre>The answer is 42
+(-3.140000, +3.140000)
+</pre></div>
+</div>
+<p>The output can be converted to an <tt class="docutils literal"><span class="pre">std::string</span></tt> with <tt class="docutils literal"><span class="pre">out.str()</span></tt> or
+accessed as a C string with <tt class="docutils literal"><span class="pre">out.c_str()</span></tt>.</p>
+ </p>
 <em>Public Functions</em><blockquote>
 <div><p id="fmt::BasicWriter:Char:::sizeC"><span id="project0classfmt_1_1_basic_writer_1a1b6721b4ba4d3fa18ac781a36616cc2a"></span><div class="line-block">
 <div class="line">std::size_t <strong>size</strong>()</div>
@@ -139,6 +175,30 @@ The content of the buffer can be converted to <tt class="docutils literal"><span
 <div><p>Returns the content of the output buffer as an <tt class="docutils literal"><span class="pre">std::string</span></tt>. </p>
 <p></p>
 </div></blockquote>
+<p id="fmt::BasicWriter:Char:::Format__StringRef"><span id="project0classfmt_1_1_basic_writer_1a6d57df87f73c884b0bac68ccf318aaee"></span><div class="line-block">
+<div class="line">BasicFormatter &lt; Char &gt; <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_basic_string_ref"><em>StringRef</em></a> format)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Formats a string sending the output to the writer. Arguments are
+accepted through the returned <tt class="docutils literal"><span class="pre">BasicFormatter</span></tt> object using inserter
+operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Writer</span> <span class="n">out</span><span class="p">;</span>
+<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;({:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This will write the following output to the <tt class="docutils literal"><span class="pre">out</span></tt> object:</p>
+<div class="highlight-none"><div class="highlight"><pre>Current point:
+(-3.140000, +3.140000)
+</pre></div>
+</div>
+<p>The output can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
+<p>See also <a class="reference internal" href="#format-string-syntax">Format String Syntax</a>.</p>
+ </p>
+</div></blockquote>
 <p id="fmt::BasicWriter:Char:::lshift-operator__i"><span id="project0classfmt_1_1_basic_writer_1a3d21148f336a76a71b39abb2fd6c0f88"></span><div class="line-block">
 <div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(int value)</div>
 </div>
@@ -155,12 +215,28 @@ The content of the buffer can be converted to <tt class="docutils literal"><span
 <div><p></p>
 <p></p>
 </div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__l"><span id="project0classfmt_1_1_basic_writer_1a1fd4183e01fd56ec99af40431b32561b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(long value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__unsigned-l"><span id="project0classfmt_1_1_basic_writer_1a4e0ef5415eb162ec991b69b930245094"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(unsigned long value)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Formats <em>value</em> and writes it to the stream. </p>
+<p></p>
+</div></blockquote>
 <p id="fmt::BasicWriter:Char:::lshift-operator__double"><span id="project0classfmt_1_1_basic_writer_1afa435e67e3db3d214f0272b10c0a3878"></span><div class="line-block">
 <div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(double value)</div>
 </div>
 </p>
 <blockquote>
-<div><p></p>
+<div><p>Formats <em>value</em> using the general format for floating-point numbers (<tt class="docutils literal"><span class="pre">'g'</span></tt>) and writes it to the stream. </p>
 <p></p>
 </div></blockquote>
 <p id="fmt::BasicWriter:Char:::lshift-operator__Char"><span id="project0classfmt_1_1_basic_writer_1a9947ae8a3177ca4a6f0f4e1198d5f0dc"></span><div class="line-block">
@@ -196,31 +272,17 @@ The content of the buffer can be converted to <tt class="docutils literal"><span
 <div><p></p>
 <p></p>
 </div></blockquote>
-<p id="fmt::BasicWriter:Char:::Format__StringRef"><span id="project0classfmt_1_1_basic_writer_1a6d57df87f73c884b0bac68ccf318aaee"></span><div class="line-block">
-<div class="line">BasicFormatter &lt; Char &gt; <strong>Format</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format)</div>
+<p id="fmt::BasicWriter:Char:::Clear"><span id="project0classfmt_1_1_basic_writer_1a5007dd5774913f279ebb453ec251dbcd"></span><div class="line-block">
+<div class="line">void <strong>Clear</strong>()</div>
 </div>
 </p>
 <blockquote>
 <div><p></p>
-<p><p>Formats a string sending the output to the writer. Arguments are
-accepted through the returned <cite>BasicFormatter</cite> object using inserter
-operator <cite>&lt;&lt;</cite>.</p>
-<p><strong>Example</strong>:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="n">Writer</span> <span class="n">out</span><span class="p">;</span>
-<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Current point:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="n">out</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;({:+f}, {:+f})&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="mf">3.14</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>This will write the following output to the <tt class="docutils literal"><span class="pre">out</span></tt> object:</p>
-<div class="highlight-none"><div class="highlight"><pre>Current point:
-(-3.140000, +3.140000)
-</pre></div>
-</div>
-<p>The output can be accessed using <tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt> or <tt class="xref py py-meth docutils literal"><span class="pre">c_str()</span></tt>.</p>
- </p>
+<p></p>
 </div></blockquote>
-<p id="fmt::BasicWriter:Char:::Clear"><span id="project0classfmt_1_1_basic_writer_1a5007dd5774913f279ebb453ec251dbcd"></span><div class="line-block">
-<div class="line">void <strong>Clear</strong>()</div>
+<p id="fmt::BasicWriter:Char:::FormatString__StringCharCP.std::s.FormatSpecCR"><span id="project0classfmt_1_1_basic_writer_1ad3620b6111090abc9352e90a973e5002"></span><div class="line-block">
+<div class="line">template &lt; typename StringChar &gt;</div>
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a> &lt; Char &gt;::CharPtr <strong>FormatString</strong>(const StringChar * s, std::size_t size, const  FormatSpec  &amp; spec)</div>
 </div>
 </p>
 <blockquote>
@@ -251,7 +313,7 @@ your own functions similar to <a class="reference internal" href="#fmt::Format__
 <p><strong>Example</strong>:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">struct</span> <span class="n">PrintError</span> <span class="p">{</span>
   <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">fmt</span><span class="o">::</span><span class="n">Writer</span> <span class="o">&amp;</span><span class="n">w</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Error: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">w</span><span class="p">.</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">fmt</span><span class="o">::</span><span class="n">Print</span><span class="p">(</span><span class="s">&quot;Error: {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">w</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
@@ -265,8 +327,8 @@ your own functions similar to <a class="reference internal" href="#fmt::Format__
 </div>
  </p>
 <em>Public Functions</em><blockquote>
-<div><p id="fmt::Formatter:Action.Char:::Formatter__StringRef.Action"><span id="project0classfmt_1_1_formatter_1a6ed3e2e723174d32badd06c59b5f21d2"></span><div class="line-block">
-<div class="line"> <strong>Formatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_string_ref"><em>StringRef</em></a> format, Action a = Action())</div>
+<div><p id="fmt::Formatter:Action.Char:::Formatter__BasicStringRef:Char:.Action"><span id="project0classfmt_1_1_formatter_1a3a38b5a29a8cdd8200635802aacc07e5"></span><div class="line-block">
+<div class="line"> <strong>Formatter</strong>(<a class="reference internal" href="#project0classfmt_1_1_basic_string_ref"><em>BasicStringRef</em></a> &lt; Char &gt; format, Action a = Action())</div>
 </div>
 </p>
 <blockquote>
@@ -283,7 +345,7 @@ examples of action classes.</p>
 </div>
 </p>
 <blockquote>
-<div><p>Constructs a formatter from a proxy object. </p>
+<div><p></p>
 <p></p>
 </div></blockquote>
 <p id="fmt::Formatter:Action.Char:::~Formatter"><span id="project0classfmt_1_1_formatter_1a25979db561f41c4bf69294bb87170c38"></span><div class="line-block">
@@ -299,7 +361,7 @@ examples of action classes.</p>
 </div>
 </p>
 <blockquote>
-<div><p>Converts the formatter into a proxy object. </p>
+<div><p></p>
 <p></p>
 </div></blockquote>
 </div></blockquote>
@@ -340,7 +402,8 @@ examples of action classes.</p>
 </div></blockquote>
 </div></blockquote>
 <div class="line-block">
-<div class="line" id="fmt::StringRef"><span id="project0classfmt_1_1_string_ref"></span><em>class</em> <strong>fmt::StringRef</strong></div>
+<div class="line">template &lt; typename Char &gt;</div>
+<div class="line" id="fmt::BasicStringRef"><span id="project0classfmt_1_1_basic_string_ref"></span><em>class</em> <strong>fmt::BasicStringRef</strong></div>
 </div>
 <blockquote>
 <div><p></p>
@@ -356,39 +419,39 @@ type to allow passing different types of strings in a function, for example:</p>
 </div>
  </p>
 <em>Public Functions</em><blockquote>
-<div><p id="fmt::StringRef::StringRef__cCP.std::s"><span id="project0classfmt_1_1_string_ref_1ae52d750450de4bc442537dcee7511d62"></span><div class="line-block">
-<div class="line"> <strong>StringRef</strong>(const char * s, std::size_t size = 0)</div>
+<div><p id="fmt::BasicStringRef:Char:::BasicStringRef__CharCP.std::s"><span id="project0classfmt_1_1_basic_string_ref_1a9bcd2f76321581d302214423baecbdfa"></span><div class="line-block">
+<div class="line"> <strong>BasicStringRef</strong>(const Char * s, std::size_t size = 0)</div>
 </div>
 </p>
 <blockquote>
 <div><p>Constructs a string reference object from a C string and a size. </p>
-<p>If <tt class="docutils literal"><span class="pre">size</span></tt> is zero, which is the default, the size is computed with <tt class="docutils literal"><span class="pre">strlen</span></tt>. </p>
+<p>If <em>size</em> is zero, which is the default, the size is computed with <tt class="docutils literal"><span class="pre">strlen</span></tt>. </p>
 </div></blockquote>
-<p id="fmt::StringRef::StringRef__ssCR"><span id="project0classfmt_1_1_string_ref_1a762b879cc00310d5ae9e65feb78f2784"></span><div class="line-block">
-<div class="line"> <strong>StringRef</strong>(const std::string &amp; s)</div>
+<p id="fmt::BasicStringRef:Char:::BasicStringRef__std::basic_string:Char:CR"><span id="project0classfmt_1_1_basic_string_ref_1afd8ffd0c6d2ccac657f277a4faea3889"></span><div class="line-block">
+<div class="line"> <strong>BasicStringRef</strong>(const std::basic_string&lt; Char &gt; &amp; s)</div>
 </div>
 </p>
 <blockquote>
 <div><p>Constructs a string reference from an <tt class="docutils literal"><span class="pre">std::string</span></tt> object. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::StringRef::castto-ss-operatorC"><span id="project0classfmt_1_1_string_ref_1abc1ec027890b45d9a4ca794c7bbd78a6"></span><div class="line-block">
-<div class="line"> <strong>operator std::string</strong>()</div>
+<p id="fmt::BasicStringRef:Char:::castto-std::basic_string:Char:-operatorC"><span id="project0classfmt_1_1_basic_string_ref_1ab39d249c0412e8beb3ea15ba480c85d7"></span><div class="line-block">
+<div class="line"> <strong>operator std::basic_string&lt; Char &gt;</strong>()</div>
 </div>
 </p>
 <blockquote>
 <div><p>Converts a string reference to an <tt class="docutils literal"><span class="pre">std::string</span></tt> object. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::StringRef::c_strC"><span id="project0classfmt_1_1_string_ref_1a832562544bebd8e8a9892f9ad03adbfe"></span><div class="line-block">
-<div class="line">const char * <strong>c_str</strong>()</div>
+<p id="fmt::BasicStringRef:Char:::c_strC"><span id="project0classfmt_1_1_basic_string_ref_1a3aecb5de1a62d0954c382eba43ce72ad"></span><div class="line-block">
+<div class="line">const Char * <strong>c_str</strong>()</div>
 </div>
 </p>
 <blockquote>
 <div><p>Returns the pointer to a C string. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::StringRef::sizeC"><span id="project0classfmt_1_1_string_ref_1ab07de40dca6c3b1290c0d3c8746683ba"></span><div class="line-block">
+<p id="fmt::BasicStringRef:Char:::sizeC"><span id="project0classfmt_1_1_basic_string_ref_1ae38d9106dd5bec69488e5464aedc266a"></span><div class="line-block">
 <div class="line">std::size_t <strong>size</strong>()</div>
 </div>
 </p>
@@ -443,9 +506,9 @@ type to allow passing different types of strings in a function, for example:</p>
 <div><p>Returns an integer formatter that formats the value in base 16 using upper-case letters for the digits above 9. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::pad__i.unsigned-i.c"><span id="project0namespacefmt_1adb3eb2bf427e7006a89fc37744f70ed9"></span><div class="line-block">
+<p id="fmt::pad__i.unsigned-i.wchar_t"><span id="project0namespacefmt_1a68ce092c6836faab27667a1e1712fa2a"></span><div class="line-block">
 <div class="line">template &lt; char TYPE_CODE &gt;</div>
-<div class="line">IntFormatter &lt; int,  AlignTypeSpec &lt; TYPE_CODE &gt; &gt; <strong>pad</strong>(int value, unsigned width, char fill = &#8216; &#8216;)</div>
+<div class="line">IntFormatter &lt; int,  AlignTypeSpec &lt; TYPE_CODE &gt; &gt; <strong>pad</strong>(int value, unsigned width, wchar_t fill = &#8216; &#8216;)</div>
 </div>
 </p>
 <blockquote>
@@ -610,8 +673,8 @@ specified, then the field width will be determined by the content.</p>
 sign-aware zero-padding for numeric types.  This is equivalent to a <em>fill</em>
 character of <tt class="docutils literal"><span class="pre">'0'</span></tt> with an <em>alignment</em> type of <tt class="docutils literal"><span class="pre">'='</span></tt>.</p>
 <p>The <em>precision</em> is a decimal number indicating how many digits should be
-displayed after the decimal point for a floating point value formatted with
-<tt class="docutils literal"><span class="pre">'f'</span></tt> and <tt class="docutils literal"><span class="pre">'F'</span></tt>, or before and after the decimal point for a floating point
+displayed after the decimal point for a floating-point value formatted with
+<tt class="docutils literal"><span class="pre">'f'</span></tt> and <tt class="docutils literal"><span class="pre">'F'</span></tt>, or before and after the decimal point for a floating-point
 value formatted with <tt class="docutils literal"><span class="pre">'g'</span></tt> or <tt class="docutils literal"><span class="pre">'G'</span></tt>.  For non-number types the field
 indicates the maximum field size - in other words, how many characters will be
 used from the field content. The <em>precision</em> is not allowed for integer values.</p>
@@ -676,7 +739,7 @@ characters and may be omitted.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">'d'</span></tt></td>
-<td>Decimal Integer. Outputs the number in base 10.</td>
+<td>Decimal integer. Outputs the number in base 10.</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'o'</span></tt></td>
 <td>Octal format. Outputs the number in base 8.</td>
@@ -695,7 +758,7 @@ upper-case letters for the digits above 9.</td>
 </tbody>
 </table>
 </div></blockquote>
-<p>The available presentation types for floating point values are:</p>
+<p>The available presentation types for floating-point values are:</p>
 <blockquote>
 <div><table border="1" class="docutils">
 <colgroup>
