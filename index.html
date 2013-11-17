@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,7 +16,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
+        URL_ROOT:    '',
         VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -228,6 +230,22 @@ operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>.</p
 </div>
 </p>
 <blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__l-l"><span id="project0classfmt_1_1_basic_writer_1adb6bfd15394b11e96b9b0a13edf50567"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(long long value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__unsigned-l-l"><span id="project0classfmt_1_1_basic_writer_1af717a7643407f94a2425555bc21fa9b5"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(unsigned long long value)</div>
+</div>
+</p>
+<blockquote>
 <div><p>Formats <em>value</em> and writes it to the stream. </p>
 <p></p>
 </div></blockquote>
@@ -236,23 +254,31 @@ operator <tt class="docutils literal"><span class="pre">&lt;&lt;</span></tt>.</p
 </div>
 </p>
 <blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id="fmt::BasicWriter:Char:::lshift-operator__double-l"><span id="project0classfmt_1_1_basic_writer_1a90215ced4a6a9fcd5065f1ffd4105a4b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(long double value)</div>
+</div>
+</p>
+<blockquote>
 <div><p>Formats <em>value</em> using the general format for floating-point numbers (<tt class="docutils literal"><span class="pre">'g'</span></tt>) and writes it to the stream. </p>
 <p></p>
 </div></blockquote>
-<p id="fmt::BasicWriter:Char:::lshift-operator__Char"><span id="project0classfmt_1_1_basic_writer_1a9947ae8a3177ca4a6f0f4e1198d5f0dc"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(Char value)</div>
+<p id="fmt::BasicWriter:Char:::lshift-operator__c"><span id="project0classfmt_1_1_basic_writer_1a4c7d6b3a40b4083f351de3f9ee0b3818"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(char value)</div>
 </div>
 </p>
 <blockquote>
 <div><p></p>
 <p></p>
 </div></blockquote>
-<p id="fmt::BasicWriter:Char:::lshift-operator__CharCP"><span id="project0classfmt_1_1_basic_writer_1adcebd993271e288e0546f7598629de8b"></span><div class="line-block">
-<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(const Char * value)</div>
+<p id="fmt::BasicWriter:Char:::lshift-operator__fmt::BasicStringRef:Char:C"><span id="project0classfmt_1_1_basic_writer_1a463ee2e9eb01ee5c06d79473162a8f30"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0classfmt_1_1_basic_writer"><em>BasicWriter</em></a>  &amp; <strong>operator&lt;&lt;</strong>(const  <a class="reference internal" href="#project0classfmt_1_1_basic_string_ref"><em>fmt::BasicStringRef</em></a> &lt; Char &gt; value)</div>
 </div>
 </p>
 <blockquote>
-<div><p></p>
+<div><p>Writes <em>value</em> to the stream. </p>
 <p></p>
 </div></blockquote>
 <p id="fmt::BasicWriter:Char:::lshift-operator__IntFormatter:T.Spec:CR"><span id="project0classfmt_1_1_basic_writer_1a58f301077749dcadbeb8c04b50a359f3"></span><div class="line-block">
@@ -317,7 +343,7 @@ your own functions similar to <a class="reference internal" href="#fmt::Format__
   <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="c1">// Formats an error message and prints it to std::cerr.</span>
+<span class="c1">// Formats an error message and prints it to stdout.</span>
 <span class="n">fmt</span><span class="o">::</span><span class="n">Formatter</span><span class="o">&lt;</span><span class="n">PrintError</span><span class="o">&gt;</span> <span class="n">ReportError</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">format</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">fmt</span><span class="o">::</span><span class="n">Formatter</span><span class="o">&lt;</span><span class="n">PrintError</span><span class="o">&gt;</span><span class="p">(</span><span class="n">format</span><span class="p">);</span>
 <span class="p">}</span>
@@ -396,7 +422,7 @@ examples of action classes.</p>
 </div>
 </p>
 <blockquote>
-<div><p>Write the output to stdout. </p>
+<div><p>Writes the output to stdout. </p>
 <p></p>
 </div></blockquote>
 </div></blockquote>
@@ -583,7 +609,7 @@ although some of the formatting options are only supported by the numeric types.
 <strong id="grammar-token-sign">sign       </strong> ::=  &quot;+&quot; | &quot;-&quot; | &quot; &quot;
 <strong id="grammar-token-width">width      </strong> ::=  <tt class="xref docutils literal"><span class="pre">integer</span></tt>
 <strong id="grammar-token-precision">precision  </strong> ::=  <tt class="xref docutils literal"><span class="pre">integer</span></tt> | &quot;{&quot; <a class="reference internal" href="#grammar-token-arg_index"><tt class="xref docutils literal"><span class="pre">arg_index</span></tt></a> &quot;}&quot;
-<strong id="grammar-token-type">type       </strong> ::=  &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;E&quot; | &quot;f&quot; | &quot;F&quot; | &quot;g&quot; | &quot;G&quot; | &quot;o&quot; | &quot;p&quot; | s&quot; | &quot;x&quot; | &quot;X&quot;
+<strong id="grammar-token-type">type       </strong> ::=  &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;E&quot; | &quot;f&quot; | &quot;F&quot; | &quot;g&quot; | &quot;G&quot; | &quot;o&quot; | &quot;p&quot; | s&quot; | &quot;x&quot; | &quot;X&quot;
 </pre>
 <p>The <em>fill</em> character can be any character other than &#8216;{&#8216; or &#8216;}&#8217;.  The presence
 of a fill character is signaled by the character following it, which must be
@@ -659,9 +685,12 @@ positive numbers, and a minus sign on negative numbers.</td>
 <p>The <tt class="docutils literal"><span class="pre">'#'</span></tt> option causes the &#8220;alternate form&#8221; to be used for the
 conversion.  The alternate form is defined differently for different
 types.  This option is only valid for integer and floating-point types.
-For integers, when octal, or hexadecimal output
-is used, this option adds the prefix respective <tt class="docutils literal"><span class="pre">'0'</span></tt>, or
-<tt class="docutils literal"><span class="pre">'0x'</span></tt> to the output value. For floating-point numbers the
+For integers, when binary, octal, or hexadecimal output is used, this
+option adds the prefix respective <tt class="docutils literal"><span class="pre">&quot;0b&quot;</span></tt> (<tt class="docutils literal"><span class="pre">&quot;0B&quot;</span></tt>), <tt class="docutils literal"><span class="pre">&quot;0&quot;</span></tt>, or
+<tt class="docutils literal"><span class="pre">&quot;0x&quot;</span></tt> (<tt class="docutils literal"><span class="pre">&quot;0X&quot;</span></tt>) to the output value.  Whether the prefix is
+lower-case or upper-case is determined by the case of the type
+specifier, for example, the prefix <tt class="docutils literal"><span class="pre">&quot;0x&quot;</span></tt> is used for the type <tt class="docutils literal"><span class="pre">'x'</span></tt>
+and <tt class="docutils literal"><span class="pre">&quot;0X&quot;</span></tt> is used for <tt class="docutils literal"><span class="pre">'X'</span></tt>.  For floating-point numbers the
 alternate form causes the result of the conversion to always contain a
 decimal-point character, even if no digits follow it. Normally, a
 decimal-point character appears in the result of these conversions
@@ -738,6 +767,16 @@ characters and may be omitted.</td>
 </tr>
 </thead>
 <tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">'b'</span></tt></td>
+<td>Binary format. Outputs the number in base 2. Using the
+<tt class="docutils literal"><span class="pre">'#'</span></tt> option with this type adds the prefix <tt class="docutils literal"><span class="pre">&quot;0b&quot;</span></tt>
+to the output value.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'B'</span></tt></td>
+<td>Binary format. Outputs the number in base 2. Using the
+<tt class="docutils literal"><span class="pre">'#'</span></tt> option with this type adds the prefix <tt class="docutils literal"><span class="pre">&quot;0B&quot;</span></tt>
+to the output value.</td>
+</tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">'d'</span></tt></td>
 <td>Decimal integer. Outputs the number in base 10.</td>
 </tr>
@@ -746,11 +785,15 @@ characters and may be omitted.</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">'x'</span></tt></td>
 <td>Hex format. Outputs the number in base 16, using
-lower-case letters for the digits above 9.</td>
+lower-case letters for the digits above 9. Using the
+<tt class="docutils literal"><span class="pre">'#'</span></tt> option with this type adds the prefix <tt class="docutils literal"><span class="pre">&quot;0x&quot;</span></tt>
+to the output value.</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'X'</span></tt></td>
 <td>Hex format. Outputs the number in base 16, using
-upper-case letters for the digits above 9.</td>
+upper-case letters for the digits above 9. Using the
+<tt class="docutils literal"><span class="pre">'#'</span></tt> option with this type adds the prefix <tt class="docutils literal"><span class="pre">&quot;0X&quot;</span></tt>
+to the output value.</td>
 </tr>
 <tr class="row-even"><td>none</td>
 <td>The same as <tt class="docutils literal"><span class="pre">'d'</span></tt>.</td>
@@ -872,11 +915,11 @@ following examples.</p>
 </pre></div>
 </div>
 <p>Replacing <tt class="docutils literal"><span class="pre">%x</span></tt> and <tt class="docutils literal"><span class="pre">%o</span></tt> and converting the value to different bases:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="n">Format</span><span class="p">(</span><span class="s">&quot;int: {0:d};  hex: {0:x};  oct: {0:o}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">;</span>
-<span class="c1">// Result: &quot;int: 42;  hex: 2a;  oct: 52&quot;</span>
-<span class="c1">// with 0x or 0 as prefix:</span>
-<span class="n">Format</span><span class="p">(</span><span class="s">&quot;int: {0:d};  hex: {0:#x};  oct: {0:#o}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">;</span>
-<span class="c1">// Result: &quot;int: 42;  hex: 0x2a;  oct: 052&quot;</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="n">Format</span><span class="p">(</span><span class="s">&quot;int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">;</span>
+<span class="c1">// Result: &quot;int: 42;  hex: 2a;  oct: 52; bin: 101010&quot;</span>
+<span class="c1">// with 0x or 0 or 0b as prefix:</span>
+<span class="n">Format</span><span class="p">(</span><span class="s">&quot;int: {0:d};  hex: {0:#x};  oct: {0:#o};  bin: {0:#b}&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="p">;</span>
+<span class="c1">// Result: &quot;int: 42;  hex: 0x2a;  oct: 052;  bin: 0b101010&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -899,7 +942,7 @@ following examples.</p>
     </div>
     <div class="footer">
         &copy; Copyright 1990-2012, Python Software Foundation.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>
