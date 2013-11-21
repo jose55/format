@@ -508,6 +508,14 @@ type to allow passing different types of strings in a function, for example:</p>
 </div>
 <div class="section" id="write-api">
 <h1>Write API<a class="headerlink" href="#write-api" title="Permalink to this headline">¶</a></h1>
+<p id="fmt::bin__i"><span id="project0namespacefmt_1a38ac9fb21293f70bcf720008cab48021"></span><div class="line-block">
+<div class="line">IntFormatter &lt; int,  TypeSpec &lt;&#8217;b&#8217;&gt; &gt; <strong>bin</strong>(int value)</div>
+</div>
+</p>
+<blockquote>
+<div><p>Returns an integer formatter that formats the value in base 2. </p>
+<p></p>
+</div></blockquote>
 <p id="fmt::oct__i"><span id="project0namespacefmt_1a24dbdffaf468b794154a7aa4e99fd59d"></span><div class="line-block">
 <div class="line">IntFormatter &lt; int,  TypeSpec &lt;&#8217;o&#8217;&gt; &gt; <strong>oct</strong>(int value)</div>
 </div>
@@ -609,7 +617,8 @@ although some of the formatting options are only supported by the numeric types.
 <strong id="grammar-token-sign">sign       </strong> ::=  &quot;+&quot; | &quot;-&quot; | &quot; &quot;
 <strong id="grammar-token-width">width      </strong> ::=  <tt class="xref docutils literal"><span class="pre">integer</span></tt>
 <strong id="grammar-token-precision">precision  </strong> ::=  <tt class="xref docutils literal"><span class="pre">integer</span></tt> | &quot;{&quot; <a class="reference internal" href="#grammar-token-arg_index"><tt class="xref docutils literal"><span class="pre">arg_index</span></tt></a> &quot;}&quot;
-<strong id="grammar-token-type">type       </strong> ::=  &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;E&quot; | &quot;f&quot; | &quot;F&quot; | &quot;g&quot; | &quot;G&quot; | &quot;o&quot; | &quot;p&quot; | s&quot; | &quot;x&quot; | &quot;X&quot;
+<strong id="grammar-token-type">type       </strong> ::=  <a class="reference internal" href="#grammar-token-int_type"><tt class="xref docutils literal"><span class="pre">int_type</span></tt></a> | &quot;c&quot; | &quot;e&quot; | &quot;E&quot; | &quot;f&quot; | &quot;F&quot; | &quot;g&quot; | &quot;G&quot; | &quot;p&quot; | s&quot;
+<strong id="grammar-token-int_type">int_type   </strong> ::=  &quot;b&quot; | &quot;B&quot; | &quot;d&quot; | &quot;o&quot; | &quot;x&quot; | &quot;X&quot;
 </pre>
 <p>The <em>fill</em> character can be any character other than &#8216;{&#8216; or &#8216;}&#8217;.  The presence
 of a fill character is signaled by the character following it, which must be
@@ -940,9 +949,22 @@ following examples.</p>
         <li><a href="#">format 0.7 documentation</a> &raquo;</li> 
       </ul>
     </div>
+
     <div class="footer">
         &copy; Copyright 1990-2012, Python Software Foundation.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
+<!-- Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20116650-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
   </body>
 </html>
